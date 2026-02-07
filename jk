@@ -1,0 +1,158 @@
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Google Fonts CDN -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<!-- Satoshi Font CDN -->
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700&display=swap" rel="stylesheet">
+
+<!-- Three.js, GSAP, and canvas-confetti CDNs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+    /* Core Design System & Global Styles */
+    body {
+        background-color: #0c0a09;
+        font-family: 'Satoshi', sans-serif;
+        color: #e2e8f0;
+        overflow: hidden;
+    }
+
+    /* Animated Aurora Gradient Background */
+    .aurora-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: #0c0a09;
+        overflow: hidden;
+    }
+
+    .aurora-background::before, .aurora-background::after {
+        content: '';
+        position: absolute;
+        width: 100vmin;
+        height: 100vmin;
+        border-radius: 50%;
+        animation: breathe 15s infinite alternate;
+        will-change: transform, opacity;
+    }
+
+    .aurora-background::before {
+        background: radial-gradient(circle, hsla(333, 70%, 55%, 0.4) 0%, transparent 70%);
+        top: -25vmin;
+        left: -25vmin;
+    }
+
+    .aurora-background::after {
+        background: radial-gradient(circle, hsla(210, 89%, 60%, 0.3) 0%, transparent 70%);
+        bottom: -25vmin;
+        right: -25vmin;
+        animation-delay: -7.5s;
+    }
+
+    @keyframes breathe {
+        0% { transform: scale(1); opacity: 0.4; }
+        100% { transform: scale(1.5); opacity: 0.6; }
+    }
+
+    .aurora-overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 10% 90%, hsla(282, 82%, 54%, .3) 0%, transparent 50%),
+            radial-gradient(circle at 90% 10%, hsla(35, 90%, 60%, .3) 0%, transparent 50%);
+        animation: flow 20s infinite linear;
+    }
+    
+    @keyframes flow {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Glassmorphism Card Style */
+    .glass-card {
+        background: rgba(12, 10, 9, 0.55);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    /* Typography */
+    h1, h2 {
+        font-family: 'Playfair Display', serif;
+    }
+
+    .text-gradient {
+        background: linear-gradient(to right, #f9a8d4, #fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Buttons */
+    .glow-button {
+        background: linear-gradient(90deg, #ec4899, #ef4444);
+        box-shadow: 0 0 15px rgba(236, 72, 153, 0.5), 0 0 30px rgba(239, 68, 68, 0.3);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .glow-button:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 0 25px rgba(236, 72, 153, 0.8), 0 0 50px rgba(239, 68, 68, 0.5);
+    }
+    
+    .glow-button:active {
+        transform: translateY(0px) scale(1.0);
+    }
+    
+    /* Progress Bar */
+    .progress-track {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+    }
+
+    .progress-fill {
+        background: linear-gradient(90deg, #ec4899, #ef4444);
+    }
+    
+    /* Pulsating Icon */
+    .pulsate {
+        animation: pulsate-animation 2s infinite;
+    }
+    
+    @keyframes pulsate-animation {
+        0% { transform: scale(1); filter: drop-shadow(0 0 5px #ec4899); }
+        50% { transform: scale(1.1); filter: drop-shadow(0 0 20px #ec4899); }
+        100% { transform: scale(1); filter: drop-shadow(0 0 5px #ec4899); }
+    }
+    
+    /* Polaroid Effect */
+    .polaroid {
+        background: #fff;
+        padding: 1rem;
+        padding-bottom: 2.5rem;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        transform: rotate(-5deg);
+        transition: transform 0.3s ease-in-out;
+        perspective: 1000px;
+    }
+    
+    .polaroid:hover {
+        transform: rotate(0deg) scale(1.05);
+    }
+
+    /* Initial animation state for steps */
+    .step-content {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+</style>
